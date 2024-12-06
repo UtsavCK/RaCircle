@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { supabase } from '../supabaseClient'; // Import your Supabase client
+import { supabase } from '../supabaseClient';
 
-
-const Login = () => {
-  const navigate = useNavigate();
-
+const Signup = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
   function handleChange(event) {
     setFormData((prevFormData) => ({
@@ -17,32 +15,45 @@ const Login = () => {
       [event.target.name]: event.target.value,
     }));
   }
-console.log(formData)
+
   async function handleSubmitFunction(event) {
     event.preventDefault(); // Prevent page reload
+    setErrorMessage(''); // Reset error message
+    setSuccessMessage(''); // Reset success message
+
+    // Validation checks
+    if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      setErrorMessage('Please enter a valid email address.');
+      return;
+    }
+
+    if (formData.password.length < 6) {
+      setErrorMessage('Password must be at least 6 characters long.');
+      return;
+    }
+
     try {
-        const { data, error } = await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signUp({
         email: formData.email,
         password: formData.password,
       });
 
       if (error) {
-        alert('Invalid Login credentials');
-        console.log('Error:', error);
+        setErrorMessage(error.message); // Display Supabase error
       } else {
-        alert('Logged in');
-        console.log('Sign-in successful:', data);
-        navigate('/homepage');
+        setSuccessMessage('Signup successful! Check your email for a verification link.');
+        console.log('Sign-up successful:', data);
       }
     } catch (error) {
+      setErrorMessage('An unexpected error occurred.');
       console.error('Unexpected error:', error);
     }
-  };
+  }
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm">
-        <h1 className="text-2xl font-bold text-center mb-6">Login</h1>
+        <h1 className="text-2xl font-bold text-center mb-6">Sign Up</h1>
         <form onSubmit={handleSubmitFunction} className="space-y-4">
           {/* Username Field */}
           <div>
@@ -87,12 +98,22 @@ console.log(formData)
             type="submit"
             className="w-full bg-teal-600 text-white py-2 px-4 rounded-md hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
           >
-            Login
+            Signup
           </button>
         </form>
+
+        {/* Error Message */}
+        {errorMessage && (
+          <p className="text-red-500 text-sm mt-4">{errorMessage}</p>
+        )}
+
+        {/* Success Message */}
+        {successMessage && (
+          <p className="text-green-500 text-sm mt-4">{successMessage}</p>
+        )}
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Signup;

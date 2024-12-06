@@ -8,6 +8,7 @@ const FestivalList = () => {
   const [loading, setLoading] = useState(true); // State for loading
   const [error, setError] = useState(null); // State for errors
   const [selectedDate, setSelectedDate] = useState(''); // State to store selected date
+  const [selectedFestival, setSelectedFestival] = useState(null); // State to store selected festival for modal
 
   useEffect(() => {
     const fetchFestivals = async () => {
@@ -50,6 +51,14 @@ const FestivalList = () => {
     }
   };
 
+  const openModal = (festival) => {
+    setSelectedFestival(festival); // Set the selected festival to display in the modal
+  };
+
+  const closeModal = () => {
+    setSelectedFestival(null); // Close the modal by setting the selected festival to null
+  };
+
   if (loading) return <p>Loading...</p>; // Display loading state
   if (error) return <p>Error: {error}</p>; // Display error state
 
@@ -71,15 +80,35 @@ const FestivalList = () => {
         ) : (
           <div className="card-container">
             {filteredFestivals.map((festival) => (
-              <div key={festival.id} className="card">
+              <div
+                key={festival.id}
+                className="card"
+                onClick={() => openModal(festival)} // Open modal on card click
+              >
                 <h2 className="card-title">{festival.Festival}</h2>
-                <p className="card-description">{festival.Folklore}</p>
                 <p className="card-date">Date: {festival.Date}</p>
               </div>
             ))}
           </div>
         )}
       </div>
+
+      {/* Modal */}
+      {selectedFestival && (
+        <div className="modal" onClick={closeModal}>
+          <div
+            className="modal-content"
+            onClick={(e) => e.stopPropagation()} // Prevent modal closing on clicking inside
+          >
+            <button className="close" onClick={closeModal}>
+              ❌
+            </button>
+            <h2 className="modal-title">{selectedFestival.Festival}</h2>
+            <p className="modal-date">{selectedFestival.Date}</p>
+            <p className="modal-description">{selectedFestival.Folklore}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
