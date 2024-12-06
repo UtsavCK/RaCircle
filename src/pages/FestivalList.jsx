@@ -95,20 +95,24 @@ const FestivalList = () => {
 
       {/* Modal */}
       {selectedFestival && (
-        <div className="modal" onClick={closeModal}>
-          <div
-            className="modal-content"
-            onClick={(e) => e.stopPropagation()} // Prevent modal closing on clicking inside
-          >
-            <button className="close" onClick={closeModal}>
-              ❌
-            </button>
-            <h2 className="modal-title">{selectedFestival.Festival}</h2>
-            <p className="modal-date">{selectedFestival.Date}</p>
-            <p className="modal-description">{selectedFestival.Folklore}</p>
-          </div>
-        </div>
-      )}
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 animate-fadeIn">
+  <div
+      className="bg-white p-6 rounded-lg max-w-lg w-full shadow-lg relative animate-slideIn"
+    onClick={(e) => e.stopPropagation()}
+    >
+      <button
+        className="absolute top-2 right-2 text-xl font-bold text-gray-600 hover:text-gray-800"
+        onClick={closeModal}
+      >
+        ❌
+      </button>
+      <h2 className="text-2xl font-semibold text-center text-gray-800">{selectedFestival.Festival}</h2>
+      <p className="text-sm text-center text-gray-600 mt-2">{selectedFestival.Date}</p>
+      <p className="mt-4 text-justify text-gray-700">{selectedFestival.Folklore}</p>
+    </div>
+  </div>
+)}
+
     </div>
   );
 };

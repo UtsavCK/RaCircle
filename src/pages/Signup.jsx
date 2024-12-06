@@ -1,8 +1,17 @@
 import React, { useState } from 'react';
 import { supabase } from '../supabaseClient';
+import nightBkt from '../images/street.avif';
+
 
 const Signup = () => {
   const [formData, setFormData] = useState({
+    name: '',
+    middleName: '',
+    surname: '',
+    username: '',
+    gender: '',
+    address: '',
+    phoneNumber: '',
     email: '',
     password: '',
   });
@@ -17,9 +26,9 @@ const Signup = () => {
   }
 
   async function handleSubmitFunction(event) {
-    event.preventDefault(); // Prevent page reload
-    setErrorMessage(''); // Reset error message
-    setSuccessMessage(''); // Reset success message
+    event.preventDefault();
+    setErrorMessage('');
+    setSuccessMessage('');
 
     // Validation checks
     if (!/\S+@\S+\.\S+/.test(formData.email)) {
@@ -32,18 +41,45 @@ const Signup = () => {
       return;
     }
 
+    if (!/^\d{10}$/.test(formData.phoneNumber)) {
+      setErrorMessage('Please enter a valid 10-digit phone number.');
+      return;
+    }
+
     try {
-      const { data, error } = await supabase.auth.signUp({
+      // Signup with Supabase
+      const { user, error: signupError } = await supabase.auth.signUp({
         email: formData.email,
         password: formData.password,
       });
 
-      if (error) {
-        setErrorMessage(error.message); // Display Supabase error
-      } else {
-        setSuccessMessage('Signup successful! Check your email for a verification link.');
-        console.log('Sign-up successful:', data);
+      if (signupError) {
+        setErrorMessage(signupError.message);
+        return;
       }
+
+      // Insert user details into the "profile" table
+      const { error: dbError } = await supabase.from('user_profile').insert([
+        {
+          name: formData.name,
+          middle_name: formData.middleName,
+          surname: formData.surname,
+          username: formData.username,
+          gender: formData.gender,
+          address: formData.address,
+          phone_number: formData.phoneNumber,
+          email: formData.email,
+        },
+      ]);
+
+      if (dbError) {
+        setErrorMessage('Error saving profile details. Please try again.');
+        console.error(dbError.message);
+        return;
+      }
+
+      setSuccessMessage('Signup successful! Check your email for verification.');
+      console.log('Signup and profile creation successful!');
     } catch (error) {
       setErrorMessage('An unexpected error occurred.');
       console.error('Unexpected error:', error);
@@ -51,54 +87,129 @@ const Signup = () => {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm">
-        <h1 className="text-2xl font-bold text-center mb-6">Sign Up</h1>
-        <form onSubmit={handleSubmitFunction} className="space-y-4">
-          {/* Username Field */}
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Username
-            </label>
+
+<div className="flex justify-center items-center min-h-screen relative">
+      {/* Background Image with Blur Effect */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: `url(${nightBkt})`,
+          filter: 'blur(8px)', // Apply blur effect
+          zIndex: -1, // Send the background to the back
+          transform: 'scale(1.1)', // Zoom the image
+        }}
+      ></div>
+
+      {/* Content Container */}
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
+        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">Create Your Account</h1>
+        <form onSubmit={handleSubmitFunction} className="grid grid-cols-1 gap-6">
+          {/* Name Fields */}
+          <div className="grid grid-cols-3 gap-4">
             <input
               type="text"
-              id="email"
-              name="email"
-              value={formData.email}
+              name="name"
+              value={formData.name}
               onChange={handleChange}
+              placeholder="First Name"
               required
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500"
+              className="p-2 border border-gray-300 rounded-md"
+            />
+            <input
+              type="text"
+              name="middleName"
+              value={formData.middleName}
+              onChange={handleChange}
+              placeholder="Middle Name"
+              className="p-2 border border-gray-300 rounded-md"
+            />
+            <input
+              type="text"
+              name="surname"
+              value={formData.surname}
+              onChange={handleChange}
+              placeholder="Surname"
+              required
+              className="p-2 border border-gray-300 rounded-md"
             />
           </div>
 
-          {/* Password Field */}
-          <div>
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-teal-500 focus:border-teal-500"
-            />
-          </div>
+          {/* Username */}
+          <input
+            type="text"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            placeholder="Username"
+            required
+            className="p-2 border border-gray-300 rounded-md"
+          />
+
+          {/* Gender */}
+          <select
+            name="gender"
+            value={formData.gender}
+            onChange={handleChange}
+            required
+            className="p-2 border border-gray-300 rounded-md"
+          >
+            <option value="" disabled>
+              Select Gender
+            </option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+
+          {/* Address */}
+          <textarea
+            name="address"
+            value={formData.address}
+            onChange={handleChange}
+            placeholder="Address"
+            required
+            className="p-2 border border-gray-300 rounded-md"
+          />
+
+          {/* Phone Number */}
+          <input
+            type="text"
+            name="phoneNumber"
+            value={formData.phoneNumber}
+            onChange={handleChange}
+            placeholder="Phone Number"
+            required
+            className="p-2 border border-gray-300 rounded-md"
+          />
+
+          {/* Email */}
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Email"
+            required
+            className="p-2 border border-gray-300 rounded-md"
+          />
+
+          {/* Password */}
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            placeholder="Password"
+            required
+            className="p-2 border border-gray-300 rounded-md"
+          />
 
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-teal-600 text-white py-2 px-4 rounded-md hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
+            className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
           >
-            Signup
+            Sign Up
           </button>
         </form>
 

@@ -1,0 +1,66 @@
+.volunteer-section {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  .carousel {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .carousel-item {
+    position: relative;
+  }
+  
+  .carousel-image {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .carousel-caption {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    color: white;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .carousel-caption h2 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .carousel-caption .time-left {
+    margin-top: 5px;
+    font-weight: bold;
+    color: #00ff00;
+  }
+  
+  .categories {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .category {
+    flex: 1;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+  }
+  
+  .category button {
+    margin-top: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .category button:hover {
+    background: #0056b3;
+  }
