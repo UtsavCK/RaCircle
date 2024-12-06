@@ -64,13 +64,14 @@ const FestivalList = () => {
 
   return (
     <div className="festival-container">
-      <h1>Festivals</h1>
+      <h1 className="text-3xl font-bold text-center my-8">Festivals</h1>
 
-      <div>
+      <div className="mb-6 flex justify-center">
         <input
           type="date"
           value={selectedDate}
           onChange={handleDateChange}
+          className="px-4 py-2 border rounded-lg"
         />
       </div>
 
@@ -85,8 +86,29 @@ const FestivalList = () => {
                 className="card"
                 onClick={() => openModal(festival)} // Open modal on card click
               >
+                {/* Festival Title */}
                 <h2 className="card-title">{festival.Festival}</h2>
+
+                {/* Festival Image */}
+                <img
+                  src={festival.Image || 'default-image.jpg'} // Use festival.Image if available
+                  alt={festival.Festival}
+                  className="w-full h-40 object-cover mt-2 rounded-md"
+                />
+
+                {/* Festival Date */}
                 <p className="card-date">Date: {festival.Date}</p>
+
+                {/* Learn More Button */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevent modal from opening on button click
+                    openModal(festival); // Open modal on button click
+                  }}
+                  className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+                >
+                  Learn More
+                </button>
               </div>
             ))}
           </div>
@@ -95,24 +117,23 @@ const FestivalList = () => {
 
       {/* Modal */}
       {selectedFestival && (
-  <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 animate-fadeIn">
-  <div
-      className="bg-white p-6 rounded-lg max-w-lg w-full shadow-lg relative animate-slideIn"
-    onClick={(e) => e.stopPropagation()}
-    >
-      <button
-        className="absolute top-2 right-2 text-xl font-bold text-gray-600 hover:text-gray-800"
-        onClick={closeModal}
-      >
-        ❌
-      </button>
-      <h2 className="text-2xl font-semibold text-center text-gray-800">{selectedFestival.Festival}</h2>
-      <p className="text-sm text-center text-gray-600 mt-2">{selectedFestival.Date}</p>
-      <p className="mt-4 text-justify text-gray-700">{selectedFestival.Folklore}</p>
-    </div>
-  </div>
-)}
-
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 animate-fadeIn">
+          <div
+            className="bg-white p-6 rounded-lg max-w-lg w-full shadow-lg relative animate-slideIn"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="absolute top-2 right-2 text-xl font-bold text-gray-600 hover:text-gray-800"
+              onClick={closeModal}
+            >
+              ❌
+            </button>
+            <h2 className="text-2xl font-semibold text-center text-gray-800">{selectedFestival.Festival}</h2>
+            <p className="text-sm text-center text-gray-600 mt-2">{selectedFestival.Date}</p>
+            <p className="mt-4 text-justify text-gray-700">{selectedFestival.Folklore}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
