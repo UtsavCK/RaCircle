@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // Import Link for navigation
 import { supabase } from '../supabaseClient';
 import nightBkt from '../images/street.avif';
-
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -87,16 +87,14 @@ const Signup = () => {
   }
 
   return (
-
-<div className="flex justify-center items-center min-h-screen relative">
-      {/* Background Image with Blur Effect */}
+    <div className="flex justify-center items-center h-screen w-screen relative">
+      {/* Background Image with Full Screen Effect */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage: `url(${nightBkt})`,
-          filter: 'blur(8px)', // Apply blur effect
-          zIndex: -1, // Send the background to the back
-          transform: 'scale(1.1)', // Zoom the image
+          filter: 'blur(8px)',
+          zIndex: -1,
         }}
       ></div>
 
@@ -212,6 +210,14 @@ const Signup = () => {
             Sign Up
           </button>
         </form>
+
+        {/* Login Redirect */}
+        <p className="text-sm text-center mt-4 text-gray-600">
+          Already have an account?{' '}
+          <Link to="/login" className="text-blue-500 hover:underline">
+            Log in
+          </Link>
+        </p>
 
         {/* Error Message */}
         {errorMessage && (

@@ -23,9 +23,9 @@ const festiveData = [
     description: "Khame Jatra: The Unique Festival of Bhaktapur"
   },
   {
-    image: "https://cdn.builder.io/api/v1/image/assets/TEMP/03221e061b9e2f8598d5e7f1048399362a3d874f078a8a4dafcaf3f00b62d751?placeholderIfAbsent=true&apiKey=8973cd7007234792a068b2cece109bce",
-    title: "Project title",
-    description: "UI, Art drection"
+    image: "/chandu.webp",
+    title: "Chandeshwori Jatra",
+    description: "Chandeshwori Jatra: The Festival of Chandeshwori Devotion and Unity"
   },
   {
     image: "/Bisket_Jatra_VIbes.webp",

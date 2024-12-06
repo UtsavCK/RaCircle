@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom'; // Import Link for navigation
 import { supabase } from '../supabaseClient'; // Import your Supabase client
-
 
 const Login = () => {
   const navigate = useNavigate();
@@ -17,11 +16,13 @@ const Login = () => {
       [event.target.name]: event.target.value,
     }));
   }
-console.log(formData)
+
+  console.log(formData);
+
   async function handleSubmitFunction(event) {
     event.preventDefault(); // Prevent page reload
     try {
-        const { data, error } = await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signInWithPassword({
         email: formData.email,
         password: formData.password,
       });
@@ -37,7 +38,7 @@ console.log(formData)
     } catch (error) {
       console.error('Unexpected error:', error);
     }
-  };
+  }
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
@@ -90,6 +91,14 @@ console.log(formData)
             Login
           </button>
         </form>
+
+        {/* Signup Redirect */}
+        <p className="text-sm text-center mt-4 text-gray-600">
+          Don't have an account?{' '}
+          <Link to="/signup" className="text-teal-500 hover:underline">
+            Sign Up
+          </Link>
+        </p>
       </div>
     </div>
   );

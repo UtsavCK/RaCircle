@@ -12,11 +12,12 @@ import Homepage from "./pages/Homepage";
 const App = () => {
   const location = useLocation();
   const isLoginPage = location.pathname === "/login";
+  const isSignUpPage = location.pathname === "/signup";
 
   return (
     <>
       {/* Render Navbar only if not on the Login page */}
-      {!isLoginPage && <Navbar />}
+      {!isLoginPage && !isSignUpPage && <Navbar />}
       <Routes>
         <Route path="/login" element={<Login />} />
         {/* <Route path="/" element={<Home />} /> */}

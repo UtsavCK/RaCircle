@@ -2,49 +2,50 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
-  const baseStyle =
-    "uppercase font-semibold text-sm tracking-wide border-b-2";
-  const activeStyle = "text-teal-600 border-teal-600";
-  const inactiveStyle =
-    "text-gray-600 border-transparent hover:text-gray-800 hover:border-gray-400";
-
   return (
-    <nav className="bg-white px-4 py-2 shadow-md w-full">
-      <div className="flex justify-center space-x-8">
-        <NavLink
-          className={({ isActive }) =>
-            `${baseStyle} ${isActive ? activeStyle : inactiveStyle}`
-          }
-          to="/"
-        >
-          Home
-        </NavLink>
-        <NavLink
-          className={({ isActive }) =>
-            `${baseStyle} ${isActive ? activeStyle : inactiveStyle}`
-          }
-          to="/calendar"
-        >
-          Calendar
-        </NavLink>
-        <NavLink
-          className={({ isActive }) =>
-            `${baseStyle} ${isActive ? activeStyle : inactiveStyle}`
-          }
-          to="/volunteer"
-        >
-          Volunteer
-        </NavLink>
-        <NavLink
-          className={({ isActive }) =>
-            `${baseStyle} ${isActive ? activeStyle : inactiveStyle}`
-          }
-          to="/folklore"
-        >
-          Folklore
-        </NavLink>
-      </div>
-    </nav>
+    <header className="bg-white shadow-md">
+      <nav className="flex justify-between items-center py-4 px-6 max-w-7xl mx-auto">
+        {/* Left Section: Logo */}
+        <div className="flex items-center">
+          <NavLink to="/" className="text-xl font-bold text-gray-800">
+            RaCircle
+          </NavLink>
+          <div className="hidden md:flex space-x-8">
+            <NavLink
+              to="/calendar"
+              className="ml-20 text-gray-700 hover:text-red-500"
+              activeClassName="font-bold text-red-500" // Active styling
+            >
+              Calendar
+            </NavLink>
+            <NavLink
+              to="/folklore"
+              className="text-gray-700 hover:text-red-500"
+              activeClassName="font-bold text-red-500"
+            >
+              Folklores
+            </NavLink>
+          </div>
+        </div>
+
+        {/* Right Section: Buttons */}
+        <div className="flex items-center space-x-4">
+          <NavLink
+            to="/login"
+            className="text-gray-700 hover:text-gray-900 transition"
+          >
+            <button className="px-4 py-2 border border-green-500 text-green-500 rounded-lg hover:bg-green-100 transition">
+              Log in
+            </button>
+          </NavLink>
+          <NavLink to="/signup" className="text-white">
+            <button className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
+              Sign up
+            </button>
+          </NavLink>
+        </div>
+      </nav>
+    </header>
   );
 };
 
