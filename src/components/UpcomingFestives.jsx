@@ -3,24 +3,24 @@ import { FestiveCard } from "./FestiveCard";
 
 const festiveData = [
   {
-    image: "https://cdn.builder.io/api/v1/image/assets/TEMP/5bf7c857dd70097536fa708f71c3657d1eeebc453ee7e5a1e344bb6fad47bf03?placeholderIfAbsent=true&apiKey=8973cd7007234792a068b2cece109bce",
-    title: "Bisket Jatra",
-    description: "The festive of colors"
+    image: "../images/gaijatra.webp",
+    title: "Gai Jatra",
+    description: "the festival of satiric street performances"
   },
   {
-    image: "https://cdn.builder.io/api/v1/image/assets/TEMP/13ac6baacff336c5ec86a3a7c24d78bca124211e58b24046c293be2a758c931b?placeholderIfAbsent=true&apiKey=8973cd7007234792a068b2cece109bce",
-    title: "Project title",
-    description: "UI, Art drection"
+    image: "../images/Indra_jatra.webp",
+    title: "Indra Jatra",
+    description: "Indra Jatra: A Glimpse into Bhaktapur's Celebration"
   },
   {
-    image: "https://cdn.builder.io/api/v1/image/assets/TEMP/278e56aedd70a45030a4f0e4f0b6e0e38404a42db32adc79e32e5db889b768ae?placeholderIfAbsent=true&apiKey=8973cd7007234792a068b2cece109bce",
-    title: "Project title", 
-    description: "UI, Art drection"
+    image: "../images/gunla.webp",
+    title: "Gunla and Panchadan (Panchara) Parva", 
+    description: "Panchara: The Festivals of Buddhism and Community Giving"
   },
   {
-    image: "https://cdn.builder.io/api/v1/image/assets/TEMP/5ad4adda293d5aefd8cdd79632ccf012fe7201e39bdb666b8db06ea3947113aa?placeholderIfAbsent=true&apiKey=8973cd7007234792a068b2cece109bce",
-    title: "Project title",
-    description: "UI, Art drection"
+    image: "../images/khamay.webp",
+    title: "Khamay Jatra",
+    description: "Khame Jatra: The Unique Festival of Bhaktapur"
   },
   {
     image: "https://cdn.builder.io/api/v1/image/assets/TEMP/03221e061b9e2f8598d5e7f1048399362a3d874f078a8a4dafcaf3f00b62d751?placeholderIfAbsent=true&apiKey=8973cd7007234792a068b2cece109bce",
@@ -28,9 +28,9 @@ const festiveData = [
     description: "UI, Art drection"
   },
   {
-    image: "https://cdn.builder.io/api/v1/image/assets/TEMP/7e1316726d99d7fc66a544c53107724781bddaf6984301ee1d5599a99f5aa150?placeholderIfAbsent=true&apiKey=8973cd7007234792a068b2cece109bce",
-    title: "Project title",
-    description: "UI, Art drection"
+    image: "../images/Bisket_Jatra_vibes.webp",
+    title: "Bisket Jatra",
+    description: "A fusion of tradition and uniqueness"
   }
 ];
 
