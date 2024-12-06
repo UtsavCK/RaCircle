@@ -1,9 +1,34 @@
-import './App.css'
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Calendar from "./pages/Calendar";
+import Volunteer from "./pages/Volunteer";
+import Folklore from "./pages/Folklore";
+import Login from "./pages/Login";
 
-export default function App() {
+const App = () => {
+  const location = useLocation();
+  const isLoginPage = location.pathname === "/login";
+
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-  )
-}
+    <>
+      {/* Render Navbar only if not on the Login page */}
+      {!isLoginPage && <Navbar />}
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/calendar" element={<Calendar />} />
+        <Route path="/volunteer" element={<Volunteer />} />
+        <Route path="/folklore" element={<Folklore />} />
+      </Routes>
+    </>
+  );
+};
+
+const AppWrapper = () => (
+  <Router>
+    <App />
+  </Router>
+);
+
+export default AppWrapper;
