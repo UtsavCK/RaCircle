@@ -15,10 +15,10 @@ const App = () => {
   const handleLogin = () => {
     setIsLoggedIn(true);
   };
-
+  const isVolunteerPage = location.pathname === '/volunteer';
   return (
     <Router>
-      <Navbar />
+      {!isVolunteerPage && <Navbar />}
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/calendar" element={<Calendar />} />
