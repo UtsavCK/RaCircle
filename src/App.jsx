@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Calendar from "./pages/Calendar";
 import Volunteer from "./pages/Volunteer";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 import FestivalList from "./pages/FestivalList"; // Import the FestivalList component
 
 const App = () => {
@@ -20,6 +21,8 @@ const App = () => {
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/volunteer" element={<Volunteer />} />
         <Route path="/folklore" element={<FestivalList />} /> {/* Add route for FestivalList */}
+        <Route path="/signup" element={<Signup />} />
+
       </Routes>
     </>
   );
