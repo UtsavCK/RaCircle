@@ -3,7 +3,7 @@ import * as React from "react";
 export function FestiveCard({ image, title, description }) {
   return (
     <article
-  className="flex flex-col flex-1 shrink transition-all cursor-pointer basis-0 min-w-[320px] bg-white rounded-lg border border-gray-200 shadow hover:shadow-md"
+  className="flex flex-col flex-1 shrink transition-all cursor-pointer basis-0 min-w-[320px] bg-white rounded-lg border border-gray-200 shadow hover:shadow-md hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
   tabIndex="0"
 >
   <img

@@ -1,51 +1,70 @@
-/* FestivalList.css */
 .festival-container {
   padding: 20px;
-  text-align: center; /* Center the heading and the input */
+  max-width: 1200px;
+  margin: 0 auto; /* Center the container */
+  text-align: center; /* Center-align the heading */
 }
 
 .card-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2% 5% ;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+  gap: 20px; /* Set consistent gap between cards */
   margin-top: 20px;
 }
 
 .card {
-  border: 1px solid #ccc;
-  border-radius: 10px;
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
   padding: 15px;
-  width: 25%;
-  min-width: 250px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  transition: transform 0.2s;
 }
 
 .card:hover {
-  transform: scale(1.05);
-  transform: translateY(-5px);
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .card-title {
-  font-size: 1.2em;
+  font-size: 1.4rem;
   font-weight: bold;
+  color: #2d3748; /* Dark gray for text */
+  margin-bottom: 8px;
 }
 
 .card-date {
-  color: gray;
+  font-size: 0.9rem;
+  color: #718096; /* Lighter gray for date */
+  margin-bottom: 10px;
 }
 
-button {
-  transition: background-color 0.3s ease;
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
 }
 
-button:hover {
-  background-color: #4b8dff;
+button .learn{
+  padding: 10px 15px;
+  background-color: #3182ce; /* Blue button */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
+button .learn:hover {
+  text-decoration: underline;
+}
 
+/* Modal Styling */
 .modal {
   position: fixed;
   top: 0;
@@ -61,11 +80,11 @@ button:hover {
 
 .modal-content {
   background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 700 px;
-  height: 100vh;
-  width: 80%;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   position: relative;
 }
 
@@ -73,41 +92,43 @@ button:hover {
   position: absolute;
   top: 10px;
   right: 10px;
-  font-size: 2em;  /* Make the cross larger */
-  color: black;    /* Set the color to black */
+  font-size: 1.5rem;
+  color: #4a5568; /* Dark gray */
   background: none;
   border: none;
   cursor: pointer;
+  transition: transform 0.3s, color 0.3s;
 }
 
 .close:hover {
-  color: #555;  /* Darker shade on hover */
+  color: #2d3748; /* Darker shade */
   transform: scale(1.1);
-
 }
 
 h1 {
-  font-size: 3em; /* Make the heading "Festival" bigger */
-  margin-bottom: 20px; /* Space below the heading */
+  font-size: 2.5rem; /* Larger heading */
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #2d3748; /* Darker gray for heading */
 }
 
-
-/* Modal Styling */
 .modal-title {
-  font-size: 2em;
+  font-size: 1.8rem;
   font-weight: bold;
+  color: #2d3748;
   margin-bottom: 10px;
 }
 
 .modal-date {
-  color: gray;
+  font-size: 1rem;
+  color: #718096;
   margin-bottom: 15px;
 }
 
 .modal-description {
-  font-size: 1.2em;
-  line-height: 1.6; /* Improve readability */
-  word-wrap: break-word; /* Ensure text fits in the modal */
-  text-align: justify; /* Justify the description text */
-
+  font-size: 1rem;
+  color: #4a5568;
+  line-height: 1.6;
+  text-align: justify;
+  word-wrap: break-word;
 }

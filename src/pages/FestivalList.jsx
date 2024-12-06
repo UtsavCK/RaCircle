@@ -78,38 +78,20 @@ const FestivalList = () => {
       <div>
         {filteredFestivals.length === 0 ? (
           <p>No festivals found for this date.</p>
-        ) : (
-          <div className="card-container">
-            {filteredFestivals.map((festival) => (
-              <div
-                key={festival.id}
-                className="card"
-                onClick={() => openModal(festival)} // Open modal on card click
-              >
-                {/* Festival Title */}
-                <h2 className="card-title">{festival.Festival}</h2>
-
-                {/* Festival Image */}
-                <img
-                  src={festival.Image || 'default-image.jpg'} // Use festival.Image if available
-                  alt={festival.Festival}
-                  className="w-full h-40 object-cover mt-2 rounded-md"
-                />
-
-                {/* Festival Date */}
-                <p className="card-date">Date: {festival.Date}</p>
-
-                {/* Learn More Button */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation(); // Prevent modal from opening on button click
-                    openModal(festival); // Open modal on button click
-                  }}
-                  className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-                >
-                  Learn More
-                </button>
-              </div>
+        ) : (<div className="card-container">
+          {filteredFestivals.map((festival) => (
+            <div
+              key={festival.id}
+              className="card"
+              onClick={() => openModal(festival)}
+            >
+              <h2 className="card-title">{festival.Festival}</h2>
+              <p className="card-date">Date: {festival.Date}</p>
+              <button class = "learn" onClick={(e) => { e.stopPropagation(); openModal(festival); }}>
+                Learn More
+              </button>
+            </div>
+                  
             ))}
           </div>
         )}

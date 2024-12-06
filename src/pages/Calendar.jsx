@@ -45,8 +45,8 @@ const getFirstDayOffset = (bsYear, bsMonth) => {
 
 const BSCalendar = () => {
   const [currentDate, setCurrentDate] = useState({
-    bsYear: 2080,
-    bsMonth: 1,
+    bsYear: 2081,
+    bsMonth: 5,
   });
   const [calendarDays, setCalendarDays] = useState([]);
   const [offset, setOffset] = useState(0);
@@ -113,9 +113,9 @@ const BSCalendar = () => {
   
 
   return (
-    <div className="min-h-screen bg-blue-100 flex flex-col items-center">
+    <div className="min-h-screen bg-[#e6e6e9] flex flex-col items-center pt-6">
       {/* Calendar Header */}
-      <div className="flex w-[80%] justify-between items-center bg-blue-500 text-white shadow-lg p-4 rounded-lg mb-4">
+      <div className="flex w-[80%] justify-between items-center bg-[#588157] text-white shadow-lg p-4 rounded-lg mb-4">
         <button
           className="text-xl font-bold hover:text-teal-200 transition-colors p-2 rounded-full hover:bg-blue-400"
           onClick={handlePrevMonth} // Correct function reference
@@ -136,7 +136,7 @@ const BSCalendar = () => {
       {/* Calendar Grid */}
       <div className="grid grid-cols-7 gap-2 text-center bg-white/80 backdrop-blur-sm p-4 rounded-xl shadow-lg mx-4 w-[80%] h-2/4">
         {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
-          <div key={day} className="font-bold text-teal-600 opacity-80">
+          <div key={day} className="font-bold text-[#577590] opacity-80">
             {day}
           </div>
         ))}
@@ -147,15 +147,15 @@ const BSCalendar = () => {
           <div
             key={day}
             onClick={() => handleDateClick(day)}
-            className="p-4 border border-teal-300 rounded-lg text-teal-800 
+            className="p-4 h-20 border border-[#d4e09b] rounded-lg text-[#0c0f0a] 
                        font-semibold cursor-pointer 
-                       hover:bg-teal-100 hover:shadow-md 
+                       hover:bg-[#e9f5db] hover:shadow-md 
                        transition-all duration-200 
                        relative group"
           >
             {day}
             <span
-              className="absolute top-1 right-1 text-teal-500 
+              className="absolute top-1 right-1 text-teal-100 
                          opacity-0 group-hover:opacity-100 
                          transition-opacity duration-200 
                          text-xs"
