@@ -3,8 +3,8 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Calendar from "./pages/Calendar";
 import Volunteer from "./pages/Volunteer";
-import Folklore from "./pages/Folklore";
 import Login from "./pages/Login";
+import FestivalList from "./pages/FestivalList"; // Import the FestivalList component
 
 const App = () => {
   const location = useLocation();
@@ -19,12 +19,13 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/volunteer" element={<Volunteer />} />
-        <Route path="/folklore" element={<Folklore />} />
+        <Route path="/folklore" element={<FestivalList />} /> {/* Add route for FestivalList */}
       </Routes>
     </>
   );
 };
 
+// Wrapping App in Router to manage routing
 const AppWrapper = () => (
   <Router>
     <App />

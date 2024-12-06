@@ -1,0 +1,66 @@
+/* Container for the entire Festival list */
+.festival-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Heading for the Festivals section */
+  .festival-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Style for the date input */
+  .festival-container input[type="date"] {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Card container */
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  /* Individual card style */
+  .card {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Card title style */
+  .card-title {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  /* Card description style */
+  .card-description {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  /* Card date style */
+  .card-date {
+    font-size: 14px;
+    color: #888;
+  }
+  
