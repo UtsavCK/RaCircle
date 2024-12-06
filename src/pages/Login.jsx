@@ -1,60 +1,71 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom'; // Import Link for navigation
-import { supabase } from '../supabaseClient'; // Import your Supabase client
+import { supabase } from '../supabaseClient'; // Import Supabase client
 
-const Login = () => {
-  const navigate = useNavigate();
+const Login = ({ onLogin }) => {
+  const navigate = useNavigate(); // For navigation after successful login
 
+  // State to manage form input values
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
 
-  function handleChange(event) {
+  // Handle form input changes
+  const handleChange = (event) => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       [event.target.name]: event.target.value,
     }));
-  }
+  };
 
-  console.log(formData);
-
-  async function handleSubmitFunction(event) {
+  // Handle form submission
+  const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent page reload
+
     try {
+      // Attempt to sign in with Supabase
       const { data, error } = await supabase.auth.signInWithPassword({
         email: formData.email,
         password: formData.password,
       });
 
       if (error) {
-        alert('Invalid Login credentials');
+        alert('Invalid login credentials');
         console.log('Error:', error);
       } else {
-        alert('Logged in');
+        alert('Logged in successfully');
         console.log('Sign-in successful:', data);
-        navigate('/homepage');
+
+        // Call onLogin function passed as prop from App component
+        onLogin();
+
+        // Redirect to the volunteer page
+        navigate('/volunteer');
       }
     } catch (error) {
       console.error('Unexpected error:', error);
+      alert('An unexpected error occurred. Please try again.');
     }
-  }
+  };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-sm">
         <h1 className="text-2xl font-bold text-center mb-6">Login</h1>
-        <form onSubmit={handleSubmitFunction} className="space-y-4">
-          {/* Username Field */}
+
+        {/* Login Form */}
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Email Input */}
           <div>
             <label
               htmlFor="email"
               className="block text-sm font-medium text-gray-700"
             >
-              Username
+              Email
             </label>
             <input
-              type="text"
+              type="email"
               id="email"
               name="email"
               value={formData.email}
@@ -64,7 +75,7 @@ const Login = () => {
             />
           </div>
 
-          {/* Password Field */}
+          {/* Password Input */}
           <div>
             <label
               htmlFor="password"
