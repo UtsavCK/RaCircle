@@ -3,22 +3,22 @@ import { FestiveCard } from "./FestiveCard";
 
 const festiveData = [
   {
-    image: "../images/gaijatra.webp",
+    image: '/gaijatra.webp', // Use the imported image
     title: "Gai Jatra",
-    description: "the festival of satiric street performances"
+    description: "The festival of satiric street performances",
   },
   {
-    image: "../images/Indra_jatra.webp",
-    title: "Indra Jatra",
-    description: "Indra Jatra: A Glimpse into Bhaktapur's Celebration"
+    image: '/Indra_jatra.webp', // Use the imported image
+    title: "Indrajatra",
+    description: "A festival honoring Lord Indra with processions and performances",
   },
   {
-    image: "../images/gunla.webp",
+    image: "/gunla.webp",
     title: "Gunla and Panchadan (Panchara) Parva", 
     description: "Panchara: The Festivals of Buddhism and Community Giving"
   },
   {
-    image: "../images/khamay.webp",
+    image: "/khamay.webp",
     title: "Khamay Jatra",
     description: "Khame Jatra: The Unique Festival of Bhaktapur"
   },
@@ -28,7 +28,7 @@ const festiveData = [
     description: "UI, Art drection"
   },
   {
-    image: "../images/Bisket_Jatra_vibes.webp",
+    image: "/Bisket_Jatra_VIbes.webp",
     title: "Bisket Jatra",
     description: "A fusion of tradition and uniqueness"
   }
@@ -36,22 +36,30 @@ const festiveData = [
 
 export function UpcomingFestives() {
   return (
-    <section className="flex overflow-hidden flex-col self-stretch px-6 py-11 bg-white text-zinc-800 max-md:px-5" aria-labelledby="festives-heading">
-      <h1 id="festives-heading" className="self-center text-3xl font-semibold leading-none text-center">
-        Upcoming Festives
-      </h1>
-      <div className="grid grid-cols-2 grid-rows-2 gap-6 items-start mt-11 w-full max-md:mt-10 max-md:max-w-full sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
-  {festiveData.map((festive, index) => (
-    <FestiveCard
-      key={index}
-      image={festive.image}
-      title={festive.title}
-      description={festive.description}
-    />
-  ))}
-</div>
+    <section
+  className="flex flex-col px-6 py-11 bg-gray-50 text-gray-800"
+  aria-labelledby="festives-heading"
+>
+  <h1
+    id="festives-heading"
+    className="self-center text-3xl font-semibold leading-none text-center"
+  >
+    Upcoming Festives
+  </h1>
+  <div
+    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-11 w-full"
+  >
+    {festiveData.map((festive, index) => (
+      <FestiveCard
+        key={index}
+        image={festive.image}
+        title={festive.title}
+        description={festive.description}
+      />
+    ))}
+  </div>
+</section>
 
-    </section>
   );
 }
 
