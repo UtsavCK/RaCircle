@@ -25,6 +25,13 @@ const Navbar = () => {
             >
               Folklores
             </NavLink>
+            <NavLink
+              to="https://www.404s.design/"
+              className="text-gray-700 hover:text-red-500"
+              activeClassName="font-bold text-red-500"
+            >
+              Partner With Us
+            </NavLink>
           </div>
         </div>
 

@@ -34,7 +34,6 @@ const Login = ({ onLogin }) => {
         alert('Invalid login credentials');
         console.log('Error:', error);
       } else {
-        alert('Logged in successfully');
         console.log('Sign-in successful:', data);
 
         // Call onLogin function passed as prop from App component
